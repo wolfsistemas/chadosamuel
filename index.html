@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encontro com DEUS - 2026</title>
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="shortcut icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Encontro com Deus">
+    <meta name="apple-mobile-web-app-title" content="Encontro com Deus">
+    <meta name="theme-color" content="#0f172a"> 
+    <link rel="manifest" href="manifest.json">
+
+
+    
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%; 
+            overflow: hidden;
+            background-color: #f4f4f4;
+        }
+
+        /* Estilos da Tela de Carregamento */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #splash-screen img {
+            width: 200px;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Animação de pulsar a logo */
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* O truque: o iframe ocupa a tela toda e esconde o topo do Google */
+        iframe {
+            display: block; 
+            width: 100%;
+            height: 100%; 
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // ========================================================
+        // VARIÁVEL PARA LIGAR OU DESLIGAR AS INSCRIÇÕES
+        // Escreva "Sim" para chamar o iframe ou "Não" para chamar tela.html
+        // ========================================================
+        var inscricoesAbertas = "sim"; 
+
+
+        // Lógica que lê a variável acima
+        if (inscricoesAbertas.toLowerCase() === "sim") {
+            // Se for "Sim", escreve o iframe e a tela de carregamento no HTML
+            document.write(`
+                <div id="splash-screen">
+                    <img src="https://img2.gratispng.com/cb3/acf/skn/v9koudgms.webp" alt="Carregando Inscrição...">
+                </div>
+                <iframe 
+                    src="https://script.google.com/macros/s/AKfycbyoR3mAxEmwU5rQrfu0yJuczB1UBF9urLXwOJygyFmUkL_FLyHaOkOCXu2-zkUJOwPrEQ/exec"
+                    onload="esconderSplashScreen()">
+                </iframe>
+            `);
+        } else {
+            // Se for "Não", redireciona para a página de encerramento
+            window.location.replace("tela.html");
+        }
+
+        // Função para esconder a tela de carregamento quando o iframe estiver pronto
+        function esconderSplashScreen() {
+            const splash = document.getElementById('splash-screen');
+            if(splash) {
+                splash.style.opacity = '0';
+                splash.style.visibility = 'hidden';
+                
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 300);
+            }
+        }
+
+       /* // Função para registrar acesso no contador
+        function registrarAcesso(pagina) {
+          var urlGAS = "https://script.google.com/macros/s/AKfycbxnystn3UqAKnfLUgw7tXS8CzrnpxTS0iax80rhMCRs-T47ibodGYvbRw2KRrtsnCzn/exec";
+          // Usamos ?contador=principal ou ?contador=encontro
+          fetch(urlGAS + "?contador=" + pagina, { method: "GET", mode: "no-cors" })
+            .catch(erro => console.warn("Erro ao registrar acesso:", erro));
+        }
+        
+        // Executa ao carregar a página
+        document.addEventListener("DOMContentLoaded", function() {
+          // Detecta qual página está sendo acessada
+          var pagina = window.location.pathname.includes("encontro") ? "encontro" : "principal";
+          registrarAcesso(pagina);
+        });*/
+    </script>
+
+</body>
+</html>
